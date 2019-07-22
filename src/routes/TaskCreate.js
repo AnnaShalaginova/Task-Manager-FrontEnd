@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Layout from '../shared/Layout'
-import MovieForm from '../shared/MovieForm'
+import TaskForm from '../shared/TaskForm'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { Redirect } from 'react-router-dom'
 
-class MovieCreate extends Component {
+class TaskCreate extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -14,7 +14,7 @@ class MovieCreate extends Component {
         director: '',
         year: ''
       },
-      createdMovieId: null
+      createdTaskId: null
     }
   }
   handleChange = event => {
@@ -24,36 +24,36 @@ class MovieCreate extends Component {
     // create an object with updated field
 
     // use object to create updated state object
-    const editedMovie = Object.assign(this.state.movie, updatedField)
+    const editedTask = Object.assign(this.state.movie, updatedField)
 
     // finally setState with updated object
-    this.setState({ movie: editedMovie })
+    this.setState({ movie: editedTask })
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    axios.post(`${apiUrl}/movies`, {
+    axios.post(`${apiUrl}/tasks`, {
       movie: this.state.movie
 
     })
       .then(res => this.setState({
-        createdMovieId: res.data.movie.id
+        createdTaskId: res.data.movie.id
       }))
       .catch(console.error)
   }
 
   render () {
     const { handleChange, handleSubmit } = this
-    const { movie, createdMovieId } = this.state
+    const { movie, createdTaskId } = this.state
 
-    if (createdMovieId) {
-      return <Redirect to={`/movies/${createdMovieId}`} />
+    if (createdTaskId) {
+      return <Redirect to={`/tasks/${createdTaskId}`} />
     }
 
     return (
       <Layout>
         <h4>Create a new movie</h4>
-        <MovieForm
+        <TaskForm
           movie={movie}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
@@ -63,4 +63,4 @@ class MovieCreate extends Component {
     )
   }
 }
-export default MovieCreate
+export default TaskCreate

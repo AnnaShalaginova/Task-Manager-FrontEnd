@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import MovieForm from '../shared/MovieForm'
+import TaskForm from '../shared/TaskForm'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Layout from '../shared/Layout'
 import { Redirect } from 'react-router-dom'
 
 // Step 1: initialize constructor, state
-class MovieEdit extends Component {
+class TaskEdit extends Component {
   constructor (props) {
     super(props)
 
@@ -21,7 +21,7 @@ class MovieEdit extends Component {
   }
 
   componentDidMount () {
-    axios(`${apiUrl}/movies/${this.props.match.params.id}`)
+    axios(`${apiUrl}/tasks/${this.props.match.params.id}`)
       .then(res => this.setState({ movie: res.data.movie }))
       .catch(console.error)
   }
@@ -30,13 +30,13 @@ class MovieEdit extends Component {
       // square brackets because it's a variable name
       [event.target.name]: event.target.value
     }
-    const editedMovie = Object.assign(this.state.movie, updatedField)
-    this.setState({ movie: editedMovie })
+    const editedTask = Object.assign(this.state.movie, updatedField)
+    this.setState({ movie: editedTask })
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    axios.patch(`${apiUrl}/movies/${this.props.match.params.id}`, {
+    axios.patch(`${apiUrl}/tasks/${this.props.match.params.id}`, {
       movie: this.state.movie
     })
       .then(res => this.setState({
@@ -52,18 +52,18 @@ class MovieEdit extends Component {
   //   }
   //   // create an object with updated field
   //   // use object to create updated state object
-  //   const editedMovie = Object.assign(this.state.movie, updatedField)
+  //   const editedTask = Object.assign(this.state.movie, updatedField)
   //  // finally setState with updated object
-  //   this.setState({ movie: editedMovie })
+  //   this.setState({ movie: editedTask })
   // }
   // handleSubmit = event => {
   //   event.preventDefault()
-  //   axios.post(`${apiUrl}/movies`, {
+  //   axios.post(`${apiUrl}/tasks`, {
   //     movie: this.state.movie
   //
   //   })
   //     .then(res => this.setState({
-  //       createdMovieId: res.data.movie.id
+  //       createdTaskId: res.data.movie.id
   //     }))
   //     .catch(console.error)
   // }
@@ -75,7 +75,7 @@ class MovieEdit extends Component {
     if (edited) {
       return <Redirect to={
         {
-          pathname: `/movies/${this.props.match.params.id}`,
+          pathname: `/tasks/${this.props.match.params.id}`,
           state: {
             msg: 'Updated movie!'
           }
@@ -84,24 +84,24 @@ class MovieEdit extends Component {
     }
 
     return (
-      // Layout & MovieForm
-      // Step 2.a reuse Movieform
+      // Layout & TaskForm
+      // Step 2.a reuse Taskform
       <Layout>
         <h3>Edit your movie:</h3>
-        <MovieForm
+        <TaskForm
           movie={movie}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          cancelPath={`/movies/${this.props.match.params.id}`}
+          cancelPath={`/tasks/${this.props.match.params.id}`}
         />
       </Layout>
     )
   }
-  // Step 2.a reuse MovieForm
+  // Step 2.a reuse TaskForm
   // Step 3: populate from - GET request
   // Step 3.a: update state from successfully API response
   // Step 4: handleChange, handleSubmit
 
   // Step 5: on submit - update state & handle redirect in render
 }
-export default MovieEdit
+export default TaskEdit

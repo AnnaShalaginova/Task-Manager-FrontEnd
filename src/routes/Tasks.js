@@ -32,9 +32,9 @@ class tasks extends Component {
   render () {
     const { tasks, error, loaded } = this.state
 
-    const tasksList = tasks.map(movie => (
-      <li key={movie.id}>
-        <Link to={`/tasks/${movie.id}`}>{movie.title}</Link>
+    const tasksList = tasks.map(task => (
+      <li key={task.id}>
+        <Link to={`/tasks/${task.id}`}>{task.title}</Link>
       </li>
     ))
 
