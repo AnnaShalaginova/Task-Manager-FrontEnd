@@ -8,6 +8,9 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
+import Tasks from './tasks/components/Tasks'
+// import Task from './tasks/components/Task'
+import CreateTask from './tasks/components/CreateTask'
 
 import Alert from 'react-bootstrap/Alert'
 
@@ -49,11 +52,23 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
+          <Route exact path="/" render={() => (
+            <Tasks user={user} />
+          )} />
+          <Route exact path="/Tasks" render={() => (
+            <Tasks user={user} />
+          )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/tasks/:id' render={() => (
+            <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path="/createtask" render={() => (
+            <CreateTask user={user} alert={this.alert} />
           )} />
         </main>
       </React.Fragment>

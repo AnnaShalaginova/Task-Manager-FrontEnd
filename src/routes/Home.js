@@ -3,7 +3,7 @@ import Layout from '../shared/Layout'
 
 const Home = () => (
   <Layout title="home page">
-    <h1>Welcome to the movie app!</h1>
+    <h1>Welcome to Task AS!</h1>
   </Layout>
 )
 

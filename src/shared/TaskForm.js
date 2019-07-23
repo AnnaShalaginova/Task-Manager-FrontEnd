@@ -1,27 +1,41 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const TaskForm = ({ movie, handleSubmit, handleChange, cancelPath }) => (
+const TaskForm = ({ task, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <label>Title</label>
     <input
-      placeholder="Title of Film"
-      value={movie.title}
-      name="title"
+      placeholder="Task name"
+      value={task.title}
+      name="name"
       onChange={handleChange}
 
     />
-    <label>Director</label>
+    <label>Description</label>
     <input
-      placeholder="Director"
-      value = {movie.director}
-      name="director"
+      placeholder="Description"
+      value = {task.director}
+      name="description"
       onChange={handleChange}
     />
-    <label>Year</label>
+    <label>Status</label>
     <input
-      placeholder="YYYY-MM-DD"
-      value = {movie.year}
+      placeholder="Status"
+      value = {task.status}
+      name="status"
+      onChange={handleChange}
+    />
+    <label>Notes</label>
+    <input
+      placeholder="Notes"
+      value = {task.notes}
+      name="notes"
+      onChange={handleChange}
+    />
+    <label>Due Date</label>
+    <input
+      placeholder="MM-DD-YYYY"
+      value = {task.year}
       name="year"
       onChange={handleChange}
       type="date"

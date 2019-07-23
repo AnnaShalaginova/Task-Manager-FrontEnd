@@ -9,7 +9,7 @@ class TaskCreate extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      movie: {
+      task: {
         title: '',
         director: '',
         year: ''
@@ -24,27 +24,27 @@ class TaskCreate extends Component {
     // create an object with updated field
 
     // use object to create updated state object
-    const editedTask = Object.assign(this.state.movie, updatedField)
+    const editedTask = Object.assign(this.state.task, updatedField)
 
     // finally setState with updated object
-    this.setState({ movie: editedTask })
+    this.setState({ task: editedTask })
   }
 
   handleSubmit = event => {
     event.preventDefault()
     axios.post(`${apiUrl}/tasks`, {
-      movie: this.state.movie
+      task: this.state.task
 
     })
       .then(res => this.setState({
-        createdTaskId: res.data.movie.id
+        createdTaskId: res.data.task.id
       }))
       .catch(console.error)
   }
 
   render () {
     const { handleChange, handleSubmit } = this
-    const { movie, createdTaskId } = this.state
+    const { task, createdTaskId } = this.state
 
     if (createdTaskId) {
       return <Redirect to={`/tasks/${createdTaskId}`} />
@@ -52,9 +52,9 @@ class TaskCreate extends Component {
 
     return (
       <Layout>
-        <h4>Create a new movie</h4>
+        <h4>Create a new task</h4>
         <TaskForm
-          movie={movie}
+          task={task}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           cancelPath = "/"

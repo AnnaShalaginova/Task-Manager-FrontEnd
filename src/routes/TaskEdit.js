@@ -11,7 +11,7 @@ class TaskEdit extends Component {
     super(props)
 
     this.state = {
-      movie: {
+      task: {
         title: '',
         director: '',
         year: ''
@@ -22,7 +22,7 @@ class TaskEdit extends Component {
 
   componentDidMount () {
     axios(`${apiUrl}/tasks/${this.props.match.params.id}`)
-      .then(res => this.setState({ movie: res.data.movie }))
+      .then(res => this.setState({ task: res.data.task }))
       .catch(console.error)
   }
   handleChange = event => {
@@ -30,17 +30,17 @@ class TaskEdit extends Component {
       // square brackets because it's a variable name
       [event.target.name]: event.target.value
     }
-    const editedTask = Object.assign(this.state.movie, updatedField)
-    this.setState({ movie: editedTask })
+    const editedTask = Object.assign(this.state.task, updatedField)
+    this.setState({ task: editedTask })
   }
 
   handleSubmit = event => {
     event.preventDefault()
     axios.patch(`${apiUrl}/tasks/${this.props.match.params.id}`, {
-      movie: this.state.movie
+      task: this.state.task
     })
       .then(res => this.setState({
-        movie: res.data.movie,
+        task: res.data.task,
         edited: true
       }))
       .catch(console.error)
@@ -52,32 +52,32 @@ class TaskEdit extends Component {
   //   }
   //   // create an object with updated field
   //   // use object to create updated state object
-  //   const editedTask = Object.assign(this.state.movie, updatedField)
+  //   const editedTask = Object.assign(this.state.task, updatedField)
   //  // finally setState with updated object
-  //   this.setState({ movie: editedTask })
+  //   this.setState({ task: editedTask })
   // }
   // handleSubmit = event => {
   //   event.preventDefault()
   //   axios.post(`${apiUrl}/tasks`, {
-  //     movie: this.state.movie
+  //     task: this.state.task
   //
   //   })
   //     .then(res => this.setState({
-  //       createdTaskId: res.data.movie.id
+  //       createdTaskId: res.data.task.id
   //     }))
   //     .catch(console.error)
   // }
   // Step 2: render function to display/return jsx
   render () {
     const { handleChange, handleSubmit } = this
-    const { movie, edited } = this.state
+    const { task, edited } = this.state
 
     if (edited) {
       return <Redirect to={
         {
           pathname: `/tasks/${this.props.match.params.id}`,
           state: {
-            msg: 'Updated movie!'
+            msg: 'Updated task!'
           }
         }
       } />
@@ -87,9 +87,9 @@ class TaskEdit extends Component {
       // Layout & TaskForm
       // Step 2.a reuse Taskform
       <Layout>
-        <h3>Edit your movie:</h3>
+        <h3>Edit your task:</h3>
         <TaskForm
-          movie={movie}
+          task={task}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           cancelPath={`/tasks/${this.props.match.params.id}`}
