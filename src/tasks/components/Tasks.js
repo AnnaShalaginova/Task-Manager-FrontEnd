@@ -64,6 +64,10 @@ class Tasks extends Component {
         to={`/tasks/${task.id}`}
       >
         {task.title}
+        &nbsp;&nbsp;
+        <Link to={`/tasks/${this.props.match.params.id}`}>
+          <button>Learn More</button>
+        </Link>
       </ListGroup.Item>
     ))
 
