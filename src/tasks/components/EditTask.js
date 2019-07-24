@@ -26,7 +26,7 @@ class EditTask extends Component {
   componentDidMount () {
     axios(`${apiUrl}/tasks/${this.props.match.params.id}`)
       .then(res => {
-        const dateObj = new Date(res.data.book.due_date)
+        const dateObj = new Date(res.data.task.due_date)
         const formattedDate = dateObj.toISOString().substring(0, 10)
         this.setState({
           task: {

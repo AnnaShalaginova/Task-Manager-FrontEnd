@@ -56,18 +56,18 @@ class Task extends Component {
       .catch(() => this.props.alert('Something went wrong :-( ', 'danger'))
   }
 
-  // handleDelete = () => {
+  // handleEdit = () => {
   //   console.log(this.props.match.params.id)
   //   axios({
   //     url: `${apiUrl}/tasks/${this.props.match.params.id}`,
-  //     method: 'DELETE',
+  //     method: 'PATCH',
   //     headers: {
   //       'Authorization': `Token token=${this.props.user.token}`
   //     }
   //   })
   //     .then(() => this.props.alert('You deleted a task!', 'success'))
   //     .then(() => this.props.history.push('/tasks'))
-  //     .catch(() => this.props.alert('Something went wrong :-( ', 'danger'))
+  //     .catch(() => this.props.alert('Please check your work ', 'danger'))
   // }
 
   render () {
@@ -78,6 +78,10 @@ class Task extends Component {
         <Button variant="danger" className="mr-2" onClick={this.handleDelete}>Delete</Button>
         <Link to={`/tasks/${this.props.match.params.id}/edit`}>
           <Button>Edit</Button>
+        </Link>
+        &nbsp;&nbsp;
+        <Link to={'/tasks'}>
+          <Button>Back to Tasks</Button>
         </Link>
       </div>
     )

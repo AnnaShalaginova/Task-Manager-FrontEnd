@@ -75,7 +75,7 @@ class App extends Component {
           )} />
           <AuthenticatedRoute
             user={user}
-            exact path="/tasks/:id"
+            exact path="/tasks/:id/edit"
             render={() =>
               <EditTask exact alert={this.alert} user={user} />}
           />
