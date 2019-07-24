@@ -12,7 +12,10 @@ import Tasks from './tasks/components/Tasks'
 // import Task from './tasks/components/Task'
 import CreateTask from './tasks/components/CreateTask'
 
+import EditTask from './tasks/components/EditTask'
+
 import Alert from 'react-bootstrap/Alert'
+import Task from './tasks/components/Task'
 
 class App extends Component {
   constructor () {
@@ -61,15 +64,21 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
+          <AuthenticatedRoute exact user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/tasks/:id' render={() => (
-            <ChangePassword alert={this.alert} user={user} />
+          <AuthenticatedRoute user={user} exact path='/tasks/:id' render={() => (
+            <Task exact alert={this.alert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path="/createtask" render={() => (
-            <CreateTask user={user} alert={this.alert} />
+          <AuthenticatedRoute user={user} exact path="/createtask" render={() => (
+            <CreateTask exact user={user} alert={this.alert} />
           )} />
+          <AuthenticatedRoute
+            user={user}
+            exact path="/tasks/:id"
+            render={() =>
+              <EditTask exact alert={this.alert} user={user} />}
+          />
         </main>
       </React.Fragment>
     )
@@ -77,3 +86,4 @@ class App extends Component {
 }
 
 export default App
+// Go back to using exact path="/tasks/:id/edit" for the last route

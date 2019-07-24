@@ -3,7 +3,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { Link, withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
-import Layout from './Layout'
+import Layout from '../../shared/Layout'
 
 class Task extends Component {
   constructor (props) {
@@ -28,32 +28,47 @@ class Task extends Component {
           day: 'numeric',
           year: 'numeric'
         }
+        console.log(res.data.task.user.id)
         const dateObj = new Date(res.data.task.due_date)
         const formattedDate = dateObj.toLocaleDateString(undefined, options)
         this.setState({
           task: {
             ...res.data.task,
-            due_date: formattedDate
+            due_date: formattedDate,
+            owner: res.data.task.user.id
           }
         })
       })
       .catch(console.error)
   }
 
-  handleDelete = event => {
-    event.preventDefault()
-
+  handleDelete = () => {
+    console.log(this.props.match.params.id)
     axios({
       url: `${apiUrl}/tasks/${this.props.match.params.id}`,
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${this.props.user.token}`
+        'Authorization': `Token token=${this.props.user.token}`
       }
     })
       .then(() => this.props.alert('You deleted a task!', 'success'))
       .then(() => this.props.history.push('/tasks'))
       .catch(() => this.props.alert('Something went wrong :-( ', 'danger'))
   }
+
+  // handleDelete = () => {
+  //   console.log(this.props.match.params.id)
+  //   axios({
+  //     url: `${apiUrl}/tasks/${this.props.match.params.id}`,
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Authorization': `Token token=${this.props.user.token}`
+  //     }
+  //   })
+  //     .then(() => this.props.alert('You deleted a task!', 'success'))
+  //     .then(() => this.props.history.push('/tasks'))
+  //     .catch(() => this.props.alert('Something went wrong :-( ', 'danger'))
+  // }
 
   render () {
     const { task } = this.state
@@ -75,7 +90,10 @@ class Task extends Component {
         <p>Status: {task.status}</p>
         <p>Due Date: {task.due_date}</p>
         <p>Notes: {task.notes}</p>
-        {user && user._id === task.owner ? ownerButtons : <p>{user ? 'You don\'t own this task' : 'Sign in to edit your tasks'}</p>}
+        { console.log(user.id + ' ' + task.owner) }
+        {console.log(user)}
+
+        {user && user.id === task.owner ? ownerButtons : <p style={{ color: 'red' }}>{user ? 'You don\'t own this task' : 'Sign in to edit your tasks'}</p>}
       </Layout>
     )
   }

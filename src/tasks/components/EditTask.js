@@ -1,58 +1,70 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { Redirect } from 'react-router-dom'
+import apiUrl from '../../apiConfig'
+import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 import Layout from '../../shared/Layout'
 
-class CreateTask extends Component {
+class EditTask extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
       task: {
+        id: '',
         title: '',
         description: '',
         status: '',
         due_date: '',
         notes: '',
         user_id: ''
-      },
-      createdTaskId: null
+      }
     }
   }
 
-handleChange = event => {
-  const updatedField = {
-    [event.target.name]: event.target.value
+  componentDidMount () {
+    axios(`${apiUrl}/tasks/${this.props.match.params.id}`)
+      .then(res => {
+        const dateObj = new Date(res.data.book.due_date)
+        const formattedDate = dateObj.toISOString().substring(0, 10)
+        this.setState({
+          task: {
+            ...res.data.task,
+            due_date: formattedDate
+          }
+        })
+      })
+      .catch(console.error)
   }
-  const editedTask = Object.assign(this.state.task, updatedField)
-  this.setState({ task: editedTask })
-}
+
+  handleChange = event => (
+    this.setState({
+      task: {
+        ...this.state.task,
+        [event.target.name]: event.target.value
+      }
+    })
+  )
 
   handleSubmit = event => {
     event.preventDefault()
 
     axios({
-      url: `${apiUrl}/tasks`,
-      method: 'POST',
+      url: `${apiUrl}/tasks/${this.props.match.params.id}`,
+      method: 'PATCH',
       headers: {
         'Authorization': `Token token=${this.props.user.token}`
       },
       data: { task: this.state.task }
     })
-      .then(res => this.setState({ createdTaskId: res.data.task.id }))
-      .then(() => this.props.alert('You created a new task', 'warning'))
-      .catch(console.error)
+      .then(() => this.props.history.push(`/tasks/${this.state.task.id}`))
+      .then(() => this.props.alert('Amazing! You edited a task.', 'success'))
+      .catch(() => this.props.alert('Still needs work.', 'danger'))
   }
 
   render () {
-    const { createdTaskId, task } = this.state
-
-    if (createdTaskId) {
-      return <Redirect to={`/tasks/${createdTaskId}`} />
-    }
+    const { task } = this.state
 
     return (
       <Layout md="8" lg="6">
@@ -103,7 +115,7 @@ handleChange = event => {
                 placeholder="notes"
                 name="notes"
                 onChange={this.handleChange}
-                value={task.notes}
+                value={task.status}
               />
             </Form.Group>
           </Form.Group>
@@ -116,4 +128,4 @@ handleChange = event => {
   }
 }
 
-export default CreateTask
+export default withRouter(EditTask)
