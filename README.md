@@ -27,9 +27,9 @@ How the app works:
  7. As a signed in user, I would like to delete tasks that I own.
  8. As any user, I would like to view all tasks.
 
-# ERD Diagram [here]([https://drive.google.com/file/d/1IgkqNm8ascZDetzq0V2oO9RfljGVpN1Q/view](https://drive.google.com/file/d/1IgkqNm8ascZDetzq0V2oO9RfljGVpN1Q/view))
+# ERD Diagram [here](https://drive.google.com/file/d/1IgkqNm8ascZDetzq0V2oO9RfljGVpN1Q/view)
 
-# Wireframe [here]([https://drive.google.com/file/d/1x9DtJ74TjZMbjc9DE9rHHxAIK7LZu1j7/view](https://drive.google.com/file/d/1x9DtJ74TjZMbjc9DE9rHHxAIK7LZu1j7/view))
+# Wireframe [here](https://drive.google.com/file/d/1x9DtJ74TjZMbjc9DE9rHHxAIK7LZu1j7/view)
 
 # Front-end Repo [here]([https://github.com/AnnaShalaginova/Task-Manager-FrontEnd](https://github.com/AnnaShalaginova/Task-Manager-FrontEnd))
 
