@@ -26,14 +26,14 @@ class EditTask extends Component {
   componentDidMount () {
     axios(`${apiUrl}/tasks/${this.props.match.params.id}`)
       .then(res => {
-        const dateObj = new Date(res.data.task.due_date)
-        const formattedDate = dateObj.toISOString().substring(0, 10)
-        this.setState({
-          task: {
-            ...res.data.task,
-            due_date: formattedDate
-          }
-        })
+        // const dateObj = new Date(res.data.task.due_date)
+        // const formattedDate = dateObj.toISOString().substring(0, 10)
+        // this.setState({
+        //   task: {
+        //     ...res.data.task,
+        //     due_date: formattedDate
+        //   }
+        // })
       })
       .catch(console.error)
   }
@@ -106,7 +106,7 @@ class EditTask extends Component {
               placeholder="09-15-2025"
               name="due_date"
               onChange={this.handleChange}
-              value={task.firstPublished}
+              value={task.due_date}
             />
             <Form.Group controlId="notes">
               <Form.Label>Notes</Form.Label>
@@ -115,7 +115,7 @@ class EditTask extends Component {
                 placeholder="notes"
                 name="notes"
                 onChange={this.handleChange}
-                value={task.status}
+                value={task.notes}
               />
             </Form.Group>
           </Form.Group>

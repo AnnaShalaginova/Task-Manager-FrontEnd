@@ -80,9 +80,6 @@ class Task extends Component {
           <Button>Edit</Button>
         </Link>
         &nbsp;&nbsp;
-        <Link to={'/tasks'}>
-          <Button>Back to Tasks</Button>
-        </Link>
       </div>
     )
 
@@ -97,7 +94,10 @@ class Task extends Component {
         { console.log(user.id + ' ' + task.owner) }
         {console.log(user)}
 
-        {user && user.id === task.owner ? ownerButtons : <p style={{ color: 'red' }}>{user ? 'You don\'t own this task' : 'Sign in to edit your tasks'}</p>}
+        {user && user.id === task.owner ? ownerButtons : <p style={{ color: 'red' }}>{user ? 'You don\'t own this task. Please note that you can only delete or edit tasks that you created.' : 'Sign in to edit your tasks'}</p>}
+        <Link to={'/tasks'}>
+          <Button>Back to Tasks</Button>
+        </Link>
       </Layout>
     )
   }

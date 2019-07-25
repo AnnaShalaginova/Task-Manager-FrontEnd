@@ -66,7 +66,6 @@ class Tasks extends Component {
         {task.title}
       </ListGroup.Item>
     ))
-
     return (
       <Layout md="8" lg="6">
         <div className="d-flex justify-content-between mb-2">

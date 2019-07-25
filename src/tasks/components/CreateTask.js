@@ -42,7 +42,7 @@ handleChange = event => {
       },
       data: { task: this.state.task }
     })
-      .then(res => this.setState({ createdTaskId: res.data.task.id }))
+      .then(res => this.setState({ createdTaskId: res.data.task.id, task: null }))
       .then(() => this.props.alert('You created a new task', 'warning'))
       .catch(console.error)
   }
