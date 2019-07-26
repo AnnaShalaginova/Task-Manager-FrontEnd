@@ -39,7 +39,7 @@ How the app works:
 https://annashalaginova.github.io/Task-Manager-FrontEnd/
 
 # Deployed Back-end Site
-https://git.heroku.com/fun-task-manager.git
+https://fun-task-manager.herokuapp.com/
 
 # Technologies Used
 
