@@ -35,9 +35,11 @@ How the app works:
 
 # Back-end Repo https://github.com/AnnaShalaginova/TaskManager-BackEnd
 
-# Deployed Front-end Site [here](https://annashalaginova.github.io/Task-Manager-FrontEnd/](https://annashalaginova.github.io/Task-Manager-FrontEnd/)
+# Deployed Front-end Site 
+https://annashalaginova.github.io/Task-Manager-FrontEnd/
 
-# Deployed Back-end Site [here](https://git.heroku.com/fun-task-manager.git](https://git.heroku.com/fun-task-manager.git)
+# Deployed Back-end Site
+https://git.heroku.com/fun-task-manager.git
 
 # Technologies Used
 
