@@ -1,6 +1,8 @@
 
 # WELCOME TO FUN TASK MANAGER
 
+![Alt text](https://i.imgur.com/uu0cNXf.png)
+
 # About the app
 
 The app allows users to view all tasks. Signed in users can create tasks, edit tasks and delete tasks. Ruby on Rails powers the app on the back end. The front end is built in React with the help of Bootstrap.
