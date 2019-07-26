@@ -31,9 +31,9 @@ How the app works:
 
 # Wireframe [here](https://drive.google.com/file/d/1x9DtJ74TjZMbjc9DE9rHHxAIK7LZu1j7/view)
 
-# Front-end Repo [here](https://github.com/AnnaShalaginova/Task-Manager-FrontEnd](https://github.com/AnnaShalaginova/Task-Manager-FrontEnd)
+# Front-end Repo https://github.com/AnnaShalaginova/Task-Manager-FrontEnd
 
-# Back-end Repo [here](https://github.com/AnnaShalaginova/TaskManager-BackEnd](https://github.com/AnnaShalaginova/TaskManager-BackEnd)
+# Back-end Repo https://github.com/AnnaShalaginova/TaskManager-BackEnd
 
 # Deployed Front-end Site [here](https://annashalaginova.github.io/Task-Manager-FrontEnd/](https://annashalaginova.github.io/Task-Manager-FrontEnd/)
 
