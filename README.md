@@ -44,6 +44,7 @@ https://git.heroku.com/fun-task-manager.git
 # Technologies Used
 
 **Front End** React, JSX, Bootstrap, Javascript, CSS 
+
 **Back End** Postgres, Ruby on Rails
 
 # Planning, Process and Problem Solving
