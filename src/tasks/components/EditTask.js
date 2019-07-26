@@ -18,7 +18,7 @@ class EditTask extends Component {
         status: '',
         due_date: '',
         notes: '',
-        user_id: ''
+        owner: ''
       }
     }
   }
@@ -26,14 +26,14 @@ class EditTask extends Component {
   componentDidMount () {
     axios(`${apiUrl}/tasks/${this.props.match.params.id}`)
       .then(res => {
-        // const dateObj = new Date(res.data.task.due_date)
-        // const formattedDate = dateObj.toISOString().substring(0, 10)
-        // this.setState({
-        //   task: {
-        //     ...res.data.task,
-        //     due_date: formattedDate
-        //   }
-        // })
+        const dateObj = new Date(res.data.task.due_date)
+        const formattedDate = dateObj.toISOString().substring(0, 10)
+        this.setState({
+          task: {
+            ...res.data.task,
+            due_date: formattedDate
+          }
+        })
       })
       .catch(console.error)
   }
