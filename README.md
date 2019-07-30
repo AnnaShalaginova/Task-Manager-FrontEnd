@@ -63,4 +63,7 @@ Also, in the next post-MVP sprint, the Tasks resource will be linked to Projects
 
 # Set Up and Installation
 
-Sign up to be able to edit and update tasks.
+1. Download this template, unzip and move it to the chosen directory. 
+2. Move into the new project and git init.
+3. Install dependencies with npm install.
+4. Run the development server with npm start.
