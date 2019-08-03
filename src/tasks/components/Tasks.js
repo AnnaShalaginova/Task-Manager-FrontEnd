@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import ListGroup from 'react-bootstrap/ListGroup'
+import { ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-// import Button from 'react-bootstrap/Button'
+
 import Layout from '../../shared/Layout'
 
 class Tasks extends Component {
@@ -15,25 +15,6 @@ class Tasks extends Component {
       sorted: false
     }
   }
-  // {
-  //   user ? (
-  //     <div>
-  //       <Button variant="outline-secondary" href="#createbook" className="mr-2">
-  //         <i className="icofont-ui-add"></i>
-  //       </Button>
-  //       <Button variant={filtered ? 'outline-primary' : 'outline-secondary'} onClick={this.handleFilter} className="mr-2">
-  //         <i className="icofont-filter"></i>
-  //       </Button>
-  //       <Button variant={sorted ? 'outline-primary' : 'outline-secondary'} onClick={this.handleSort}>
-  //         <i className="icofont-sort"></i>
-  //       </Button>
-  //     </div>
-  //   ) : (
-  //     <Button variant={sorted ? 'outline-primary' : 'outline-secondary'} onClick={this.handleSort}>
-  //       <i className="icofont-sort"></i>
-  //     </Button>
-  //   )
-  // }
 
   componentDidMount () {
     axios(`${apiUrl}/tasks`)
@@ -55,29 +36,31 @@ class Tasks extends Component {
     const { tasks, filtered } = this.state
     const { user } = this.props
 
-    const taskArray = tasks.map(task => (
-      <ListGroup.Item
-        className={filtered && !(user.id === task.user_id) ? 'd-none' : ''}
-        key={task.id}
-        action
-        as={Link}
-        to={`/tasks/${task.id}`}
-      >
-        {task.title}
-      </ListGroup.Item>
-    ))
-    return (
-      <Layout md="8" lg="6">
-        <div className="d-flex justify-content-between mb-2">
-          <h3>Tasks</h3>
+    const App = () => {
+      const [showMore, setShowMore] = useState(true);
 
-        </div>
-        <ListGroup>
-          {taskArray}
-        </ListGroup>
-      </Layout>
-    )
-  }
-}
+      const taskArray = tasks.map((item, i) => {
+        const classes = !showMore ? "d-none" : "";
+        return (
+          <ListGroup.Item key={i} className={i > 2 ? classes : ""}>
+            {item.task}
+          </ListGroup.Item>
+        );
+      });
+
+      const toggleList = () => setShowMore(!showMore);
+
+      return (
+        <Row className="mt-5">
+          <Col>
+            <h1 className="display-4 text-center">All Tasks</h1>
+            <ListGroup>{items}</ListGroup>
+            <Button block onClick={toggleList}>
+              more
+            </Button>
+          </Col>
+        </Row>
+      );
+    };
 
 export default Tasks
