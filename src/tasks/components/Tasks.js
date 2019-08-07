@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { ListGroup, Button, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-
-import Layout from '../../shared/Layout'
+// import { Link } from 'react-router-dom'
+// import Layout from '../../shared/Layout'
 
 class Tasks extends Component {
   constructor (props) {
@@ -12,7 +11,8 @@ class Tasks extends Component {
     this.state = {
       tasks: [],
       filtered: false,
-      sorted: false
+      sorted: false,
+      showMore: false
     }
   }
 
@@ -32,35 +32,31 @@ class Tasks extends Component {
     this.setState({ filtered: !this.state.filtered })
   }
 
+  toggleList = () => this.setState({ showMore: !this.state.showMore })
+
   render () {
-    const { tasks, filtered } = this.state
-    const { user } = this.props
+    const { tasks, showMore } = this.state
+    const classes = !showMore ? 'd-none' : ''
 
-    const App = () => {
-      const [showMore, setShowMore] = useState(true);
-
-      const taskArray = tasks.map((item, i) => {
-        const classes = !showMore ? "d-none" : "";
-        return (
-          <ListGroup.Item key={i} className={i > 2 ? classes : ""}>
-            {item.task}
-          </ListGroup.Item>
-        );
-      });
-
-      const toggleList = () => setShowMore(!showMore);
-
-      return (
-        <Row className="mt-5">
-          <Col>
-            <h1 className="display-4 text-center">All Tasks</h1>
-            <ListGroup>{items}</ListGroup>
-            <Button block onClick={toggleList}>
-              more
-            </Button>
-          </Col>
-        </Row>
-      );
-    };
+    return (
+      <Row className="mt-5">
+        <Col>
+          <h1 className="display-4 text-center">All Tasks</h1>
+          <ListGroup>
+            {tasks.map((item, i) => (
+              <ListGroup.Item key={i} className={i > 4 ? classes : ''}>
+                {item.title}
+              </ListGroup.Item>
+            )
+            )}
+          </ListGroup>
+          <Button block onClick={this.toggleList}>
+            more
+          </Button>
+        </Col>
+      </Row>
+    )
+  }
+}
 
 export default Tasks
